@@ -21,14 +21,14 @@ public sealed class ReceivedIssuerInfo
 
     /// <summary>
     /// Código de país del emisor (ISO 3166-1 alfa-2, ej. "ES", "FR").
-    /// <para>Opcional.</para>
+    /// <para>No requerido para emisores nacionales.</para>
     /// </summary>
     public string? Country { get; set; }
 
     /// <summary>
     /// Tipo de identificación del emisor cuando no tiene NIF español (Lista L2 TicketBAI).
     /// <para>Valores permitidos: ver <see cref="IdentifierType"/>.</para>
-    /// <para>Opcional.</para>
+    /// <para>Solo cuando el emisor no tiene NIF español.</para>
     /// </summary>
     public string? IdentifierType { get; set; }
 }
@@ -41,58 +41,58 @@ public sealed class ReceivedVatDetail
     /// <summary>
     /// Tipo de compra (Lista L19 TicketBAI).
     /// <para>Valores permitidos: ver <see cref="PurchaseType"/>.</para>
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public string? PurchaseType { get; set; }
+    public string PurchaseType { get; set; } = string.Empty;
 
     /// <summary>
     /// Indica si la operación está sujeta a inversión del sujeto pasivo (Lista L20 TicketBAI).
     /// <para>Valores permitidos: ver <see cref="ReverseCharge"/>.</para>
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public string? ReverseCharge { get; set; }
+    public string ReverseCharge { get; set; } = string.Empty;
 
     /// <summary>
     /// Porcentaje de IVA aplicado.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public decimal? VatPercent { get; set; }
+    public decimal VatPercent { get; set; }
 
     /// <summary>
     /// Importe del IVA.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public decimal? VatAmount { get; set; }
+    public decimal VatAmount { get; set; }
 
     /// <summary>
     /// Base imponible.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public decimal? BaseAmount { get; set; }
+    public decimal BaseAmount { get; set; }
 
     /// <summary>
     /// Importe del IVA soportado.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public decimal? InputVat { get; set; }
+    public decimal InputVat { get; set; }
 
     /// <summary>
     /// Importe del IVA deducible.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public decimal? DeductibleVat { get; set; }
+    public decimal DeductibleVat { get; set; }
 
     /// <summary>
     /// Porcentaje de compensación en el régimen especial de la agricultura, ganadería y pesca.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public decimal? CompensationSpecialVatPercent { get; set; }
+    public decimal CompensationSpecialVatPercent { get; set; }
 
     /// <summary>
     /// Importe de compensación en el régimen especial de la agricultura, ganadería y pesca.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public decimal? CompensationSpecialVatAmount { get; set; }
+    public decimal CompensationSpecialVatAmount { get; set; }
 }
 
 /// <summary>
@@ -116,9 +116,9 @@ public sealed class ReceivedDocumentFile
     /// <summary>
     /// Tipo de factura recibida (Lista L18 TicketBAI).
     /// <para>Valores permitidos: ver <see cref="ReceivedInvoiceType"/>.</para>
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public string? InvoiceType { get; set; }
+    public string InvoiceType { get; set; } = string.Empty;
 
     /// <summary>
     /// Serie de la factura recibida.
@@ -134,7 +134,7 @@ public sealed class ReceivedDocumentFile
 
     /// <summary>
     /// Ejercicio fiscal de la factura (año en formato yyyy).
-    /// <para>Opcional.</para>
+    /// <para>Opcional. Año fiscal en formato yyyy.</para>
     /// </summary>
     public int? Exercise { get; set; }
 
@@ -158,13 +158,13 @@ public sealed class ReceivedDocumentFile
 
     /// <summary>
     /// Nombre o razón social del receptor.
-    /// <para>Opcional.</para>
+    /// <para>Opcional. Nombre del receptor.</para>
     /// </summary>
     public string? Name { get; set; }
 
     /// <summary>
     /// CIF/NIF del receptor.
-    /// <para>Opcional.</para>
+    /// <para>Opcional. NIF del receptor.</para>
     /// </summary>
     public string? Nif { get; set; }
 
@@ -176,9 +176,9 @@ public sealed class ReceivedDocumentFile
 
     /// <summary>
     /// Indica si la factura es rectificativa.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public bool? Rectified { get; set; }
+    public bool Rectified { get; set; }
 
     /// <summary>
     /// Datos de la factura rectificada.
@@ -188,9 +188,9 @@ public sealed class ReceivedDocumentFile
 
     /// <summary>
     /// Desglose del IVA soportado de la factura recibida.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public List<ReceivedVatDetail>? VatDetail { get; set; }
+    public List<ReceivedVatDetail> VatDetail { get; set; } = new();
 
     /// <summary>
     /// Base imponible total de la factura.
@@ -200,7 +200,7 @@ public sealed class ReceivedDocumentFile
 
     /// <summary>
     /// Importe total de la factura.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public decimal? TotalInvoice { get; set; }
+    public decimal TotalInvoice { get; set; }
 }

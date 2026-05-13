@@ -25,8 +25,8 @@ public sealed class UpdateReceivedRequest
     public string CertificatePass { get; set; } = string.Empty;
 
     /// <summary>
-    /// Metadatos estadísticos opcionales de la plataforma o integración origen.
-    /// <para>Opcional.</para>
+    /// Metadatos estadísticos de la plataforma o integración origen.
+    /// <para><b>Requerido.</b></para>
     /// </summary>
     public DocumentMetadata? Metadata { get; set; }
 }

@@ -15,7 +15,7 @@ public sealed class AddCertificateRequest
 
     /// <summary>
     /// Nombre descriptivo para identificar el certificado en IQ Portal.
-    /// <para>Opcional.</para>
+    /// <para><b>Requerido.</b></para>
     /// </summary>
-    public string? Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 }

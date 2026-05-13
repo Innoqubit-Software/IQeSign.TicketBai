@@ -45,13 +45,13 @@ public sealed class GetDocumentResult
     public string DocumentDate { get; set; } = string.Empty;
 
     /// <summary>Huella TicketBAI (identificador único del documento en la plataforma).</summary>
-    public string? HuellaTbai { get; set; }
+    public string HuellaTbai { get; set; } = string.Empty;
 
     /// <summary>URL de verificación del documento en la sede electrónica de la hacienda foral.</summary>
-    public string? Url { get; set; }
+    public string Url { get; set; } = string.Empty;
 
     /// <summary>Código QR que apunta a la URL de verificación.</summary>
-    public string? Qr { get; set; }
+    public string Qr { get; set; } = string.Empty;
 
     /// <summary>Avisos devueltos por la plataforma TicketBAI.</summary>
     public List<TicketBaiWarning> Warning { get; set; } = new();
@@ -87,10 +87,10 @@ public sealed class DocumentSummary
     public string DocumentDate { get; set; } = string.Empty;
 
     /// <summary>Huella TicketBAI (identificador único del documento en la plataforma).</summary>
-    public string? HuellaTbai { get; set; }
+    public string HuellaTbai { get; set; } = string.Empty;
 
     /// <summary>URL de verificación del documento en la sede electrónica de la hacienda foral.</summary>
-    public string? Url { get; set; }
+    public string Url { get; set; } = string.Empty;
 }
 
 /// <summary>Respuesta del endpoint POST TicketBai/Document.</summary>

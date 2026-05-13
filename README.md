@@ -95,13 +95,20 @@ public class FacturacionService(ITicketBaiService ticketBai)
                 Issuer = new TicketBaiIssuerInfo
                 {
                     Name = "Mi Empresa S.L.",
-                    CifNif = "B12345678"
+                    CifNif = "B12345678",
+                    TaxCategory = "662"
                 },
                 Serial = "FAC",
                 Number = "2024-001",
                 Date = "2024-01-15",
                 Name = "Cliente S.A.",
                 Nif = "A98765432",
+                Address = "Calle Mayor 1",
+                ZipCode = "28001",
+                Country = "ES",
+                Simplified = false,
+                OperationType = OperationTypeEmitted.SinInversion,
+                Rectified = false,
                 TotalInvoice = 1210.00m,
                 Administration = Administration.Gipuzkoa,
                 Lines =
@@ -111,13 +118,25 @@ public class FacturacionService(ITicketBaiService ticketBai)
                         Description = "Servicios de consultoría",
                         Quantity = 1,
                         UnitAmount = 1000.00m,
+                        DiscountAmount = 0m,
                         Vat = 21m,
+                        VatEc = 0m,
                         VatSubject = true,
+                        VatCause = VatCause.E1,
                         TaxKey = TaxKey.RegimenGeneral
                     }
                 ]
             },
-            Metadata = new DocumentMetadata { Platform = "MiApp" }
+            Metadata = new DocumentMetadata
+            {
+                Platform = "MiApp",
+                Version = "1.0.0",
+                User = "usuario@empresa.com",
+                Email = "facturacion@empresa.com",
+                Company = "Mi Empresa S.L.",
+                Tenant = "tenant-001",
+                Description = "Factura generada desde MiApp"
+            }
         }, ct);
 
         if (!response.IsSuccess)
@@ -144,13 +163,23 @@ public class FacturasRecibidasService(ITicketBaiReceivedService received)
                 Issuer = new ReceivedIssuerInfo
                 {
                     Name = "Proveedor S.L.",
-                    CifNif = "B87654321"
+                    CifNif = "B87654321",
+                    Country = "ES",
+                    IdentifierType = IdentifierType.NifIva
                 },
+                OperationType = ReceivedOperationType.AdquisicionBienesServicios,
+                InvoiceType = ReceivedInvoiceType.FacturaConDestinatario,
                 Serial = "PRV",
                 Number = "2024-100",
+                Exercise = 2024,
                 ReceivedDate = "2024-01-20",
                 InvoiceDate = "2024-01-18",
-                InvoiceType = ReceivedInvoiceType.FacturaConDestinatario,
+                SalesVatQuote = 0m,
+                Name = "Mi Empresa S.L.",
+                Nif = "B12345678",
+                Description = "Servicios de consultoría recibidos",
+                Rectified = false,
+                TaxBase = 500.00m,
                 TotalInvoice = 605.00m
             }
         }, ct);
